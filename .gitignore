@@ -1,5 +1,25 @@
+# OS files
 .DS_Store
+
+# Editor files
 .vscode/
+
+# Build artifacts
+build/
+bin/
+*.o
+*.a
+*.so
+*.dylib
+
+# Executables
 satellite/satellite
+ground-control/ground_control
+
+# Temporary files
+*.log
+*.tmp
+
+# Project-specific
 satellite-ground station simulator discussion.md
 sandbox
