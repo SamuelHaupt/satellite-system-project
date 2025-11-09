@@ -5,11 +5,12 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include "sat_downlink.h"
 
 constexpr int PORT = 8080;
 constexpr size_t BUFFER_SIZE = 1024;
 
-int main() {
+int sat_downlink() {
     int sockfd;
     std::array<char, BUFFER_SIZE> buffer{};
     struct sockaddr_in server_addr{};
@@ -32,7 +33,7 @@ int main() {
         return -1;
     }
     
-    std::cout << "UDP Client started. Type messages to send (or 'quit' to exit):" << std::endl;
+    std::cout << "Sat Downlink started. Type messages to send (or 'quit' to exit):" << std::endl;
     
     // Send messages
     while (true) {
