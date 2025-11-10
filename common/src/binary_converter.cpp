@@ -4,8 +4,7 @@
 #include "binary_converter.h"
 
 
-BinaryConverter::BinaryConverter() {
-}
+BinaryConverter::BinaryConverter() {};
 
 /**
  * explain bitwise operation
@@ -40,12 +39,13 @@ std::vector<uint8_t> BinaryConverter::decodeToBytes(const std::vector<uint8_t>& 
     // Combine every 8 bits into a byte
     for (size_t i = 0; i < bits.size(); i += 8) {
         uint8_t byte = 0;
-        
+
         // Reconstruct byte from 8 bits (MSB to LSB)
         for (int j = 0; j < 8; j++) {
             byte = (byte << 1) | (bits[i + j] & 0x01);
+            
         }
-        
+        std::cout << byte << std::endl;
         bytes.push_back(byte);
     }
     
