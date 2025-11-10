@@ -1,21 +1,31 @@
+PROJECT_ROOT := $(shell dirname $(CURDIR))
+SAT_SRC_DIR := $(CURDIR)/src
+SAT_INCLUDE_DIR := $(CURDIR)/include
+SAT_BUILD_DIR := $(CURDIR)/build
+SAT_BIN_DIR := $(CURDIR)/bin
+COMMON_SRC_DIR := $(PROJECT_ROOT)/common/src
+COMMON_INCLUDE_DIR := $(PROJECT_ROOT)/common/include
+COMMON_BUILD_DIR := $(PROJECT_ROOT)/common/build
+
+$(shell mkdir -p $(SAT_BUILD_DIR) $(SAT_BIN_DIR) $(COMMON_BUILD_DIR))
+
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Iinclude -Isrc
+SAT_CXXFLAGS = -std=c++17 -Wall -Wextra -I$(SAT_INCLUDE_DIR) -I$(SAT_SRC_DIR)
+COMMON_CXXFLAGS = -std=c++17 -Wall -Wextra -I$(COMMON_INCLUDE_DIR) -I$(COMMON_SRC_DIR)
 
-SRC_DIR = src
-BUILD_DIR = build
-BIN_DIR = bin
 
-$(shell mkdir -p $(BUILD_DIR) $(BIN_DIR))
+all: $(SAT_BIN_DIR)/Satellite
 
-all: $(BIN_DIR)/satellite
+satellite: $(SAT_BIN_DIR)/Satellite
 
-satellite: $(BIN_DIR)/satellite
-
-$(BIN_DIR)/satellite: $(BUILD_DIR)/main.o $(BUILD_DIR)/sat_downlink.o
+$(SAT_BIN_DIR)/Satellite: $(SAT_BUILD_DIR)/main.o $(SAT_BUILD_DIR)/sat_downlink.o $(COMMON_BUILD_DIR)/bit_converter.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(SAT_BUILD_DIR)/%.o: $(SAT_SRC_DIR)/%.cpp
+	$(CXX) $(SAT_CXXFLAGS) -c $< -o $@
+
+$(COMMON_BUILD_DIR)/%.o: $(COMMON_SRC_DIR)/%.cpp
+	$(CXX) $(COMMON_CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(BUILD_DIR)/*.o $(BIN_DIR)/satellite
+	rm -f $(SAT_BUILD_DIR)/*.o $(COMMON_BUILD_DIR)/*.o $(SAT_BIN_DIR)/Satellite
