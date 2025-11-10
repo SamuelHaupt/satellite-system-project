@@ -15,7 +15,7 @@ int main() {
     // bits = {0,1,0,0,1,0,0,0, 0,1,1,0,0,1,0,1}
 
     // Print bits
-    binaryConverter.printBits(bits);
+    // binaryConverter.printBits(bits);
     // Output: "01001000 01100101"
 
     satDownlink.send(bits);
