@@ -4,6 +4,9 @@
 #include "binary_converter.h"
 
 
+BinaryConverter::BinaryConverter() {
+}
+
 /**
  * explain bitwise operation
  */
@@ -20,7 +23,6 @@ std::vector<uint8_t> BinaryConverter::encodeToBits(const std::vector<uint8_t>& b
             bits.push_back(bit);
         }
     }
-
     return bits;
 }
 
