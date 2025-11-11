@@ -5,7 +5,7 @@ CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra
 
 SOURCES := \
-udp_server.cpp 
+ground_control.cpp 
 
 OBJECTS := $(patsubst %/src/%.cpp, %/build/%.o, $(SOURCES))
 

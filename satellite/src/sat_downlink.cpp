@@ -43,8 +43,13 @@ int SatDownlink::send(const std::vector<uint8_t>& bits) {
         if (spacer == 8){ 
             std::cout << " ";
         }
+        sendto(sockfd, &bit, sizeof(uint8_t), 0, (struct sockaddr *)&server_addr, server_len);
+
     }
+
+    close(sockfd);
     std::cout << std::endl;
+    std::cout << "Bit data sent." << std::endl;
 
     // BinaryConverter binaryConverter;
     // binaryConverter.printBits(bits);
